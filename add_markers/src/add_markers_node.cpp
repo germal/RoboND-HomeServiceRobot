@@ -5,6 +5,9 @@
 #include <tf/transform_datatypes.h>
 #include <tf/transform_listener.h>
 
+float pickup_pose[3]   = {-1, 3.4, 1};
+float drop_off_pose[3] = {-4, -3, 1};
+
 double normalizeAngle(double angle){
   while(angle > M_PI) angle -= 2*M_PI;
   while(angle < -M_PI) angle += 2*M_PI;
@@ -33,8 +36,7 @@ public:
     const double d = hypot(dx,dy);
 
     const double dyaw =  normalizeAngle(th - yaw_);
-
-    ROS_INFO_STREAM("(d , dyaw) : ("<< d << ", " << dyaw << "); \n");
+    
     return d < 0.2 && dyaw < 20*M_PI/180.;
   }
 
@@ -86,9 +88,6 @@ private:
 
 int main( int argc, char** argv )
 {
-
-  float pickup_pose[3]  = {0, 3.4, 1};
-  float drop_off_pose[3] = {-4, -4, 1};
   
   ros::init(argc, argv, "add_markers");
   ROS_INFO_STREAM("add_markers node started");

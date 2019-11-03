@@ -4,6 +4,9 @@
 #include <tf2/LinearMath/Quaternion.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 
+float pickup_pose[3]   = {-1, 3.4, 1};
+float drop_off_pose[3] = {-4, -3, 1};
+
 // Define a client for to send goal requests to the move_base server through a SimpleActionClient
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
@@ -11,8 +14,6 @@ int main(int argc, char** argv){
   // Initialize the simple_navigation_goals node
   ros::init(argc, argv, "pick_objects");
 
-  float pickup_pose[3]  = {0, 3.4, 1};
-  float drop_off_pose[3] = {-4, -4, 1};
   //tell the action client that we want to spin a thread by default
   MoveBaseClient ac("move_base", true);
 

@@ -14,6 +14,7 @@ For this setup, catkin_ws is the name of the active ROS workspace. If your works
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/
 git clone https://github.com/kevinfructuoso/home-service-bot.git src
+git submodule init && git submodule update
 rosdep install --from-paths src --ignore-src -y
 catkin build
 source devel/setup.bash
